@@ -14,13 +14,10 @@ username = input(f"\n{Color.BG_RED}What is your github username?{Color.RESET}\n"
 URL = f"https://api.github.com/users/{username}/repos"
 
 def get_repos():
-    try:
         req = requests.get(URL)
         for data in req.json():
             Repo(data)
         return data
-    except:
-         print(f"\n{Color.BG_RED}Invalid user name. Please try again!{Color.RESET}\n")
         
 
 

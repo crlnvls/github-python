@@ -1,12 +1,14 @@
 from github.repo import Repo
 from github.api import get_repos, username
 
+
 import requests 
 
 
 class Design():
     
     RED = '\033[91m'
+    BG_RED = '\033[41m'
     BOLD = '\033[1m'
     RESET = '\033[0m'
  
@@ -19,8 +21,11 @@ class CLI():
     
     def start(self):
         username
-        get_repos()
-        self.all_repos()
+        try:
+            get_repos()
+            self.all_repos()
+        except:
+            print(f"\n{Design.RED}Invalid user name. Please try again!{Design.RESET}\n")
     
 
     def all_repos(self):
@@ -30,7 +35,7 @@ class CLI():
 
     def get_choice(self):
         try:
-            self._user_input = input(f"\n{Design.RED}{Design.BOLD}Which repository would you like to have more info?{Design.RESET}\n")
+            self._user_input = input(f"\n{Design.BG_RED}Which repository would you like to have more info? (type 'exit' to quit the program){Design.RESET}\n")
             if self._user_input == 'exit':
                 return self.goodbye()
             if not self.valid_input(self._user_input):
@@ -38,7 +43,7 @@ class CLI():
             self.show_repo()
             self.get_choice()
         except ValueError:
-            print(f'{Design.RED}Sorry,that is not a valid input. PLease try again!{Design.RESET}\n')
+            print(f'{Design.RED}Sorry,that is not a valid input. PLease try again{Design.RESET}\n')
             self.all_repos()
 
     def show_repo(self):
@@ -54,7 +59,7 @@ class CLI():
 
     @staticmethod
     def goodbye():
-        print(f"\n{Design.RED}{Design.BOLD}Sorry to see you go!{Design.RESET}\n")
+        print(f"\n{Design.BG_RED}Sorry to see you go!{Design.RESET}\n")
 
         
 
