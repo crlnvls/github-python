@@ -30,22 +30,23 @@ class CLI():
 
     def get_choice(self):
         try:
-            self._user_input = input(f"\n{Design.RED}{Design.BOLD}Invalid user name. Please try again!{Design.RESET}\n")
+            self._user_input = input(f"\n{Design.RED}{Design.BOLD}Which repository would you like to have more info?{Design.RESET}\n")
             if self._user_input == 'exit':
                 return self.goodbye()
             if not self.valid_input(self._user_input):
                 raise ValueError
-            self.show_house()
-            self.get_user_choice()
+            self.show_repo()
+            self.get_choice()
         except ValueError:
-            print(f'{Format.RED}Sorry,that is not a valid input.{Format.CLEAR}\n')
-            self.menu()
+            print(f'{Design.RED}Sorry,that is not a valid input. PLease try again!{Design.RESET}\n')
+            self.all_repos()
 
-    def show_house(self):
-        house = House.find_by_input(self._user_input)
-        print(f'\n{Format.BLUE}{Format.BOLD}{house.name}{Format.CLEAR}')
-        print(f'\tRegion: {house.region}')
-        print(f'\tInsignia: {house.insignia}')
+    def show_repo(self):
+        repo = Repo.find_by_input(self._user_input)
+        print(f'\n{Design.RED}{Design.BOLD}{repo.name}{Design.RESET}')
+        print(f'\tCreated at: {repo.created}')
+        print(f'\tForks: {repo.forks}')
+        print(f'\tLanguage: {repo.language}')
 
     @staticmethod
     def valid_input(i):
