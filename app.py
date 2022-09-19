@@ -25,7 +25,7 @@ class CLI():
             get_repos()
             self.all_repos()
         except:
-            print(f"\n{Design.RED}Invalid user name. Please try again!{Design.RESET}\n")
+            print(f"\n{Design.RED}Invalid username. Please try again!{Design.RESET}\n")
     
 
     def all_repos(self):
